@@ -1,5 +1,5 @@
 use diesel::prelude::*;
-use chrono::NaiveDate;
+use chrono::NaiveDateTime;
 
 use crate::schema::overflows;
 
@@ -12,9 +12,9 @@ pub struct NewOverflow <'a>{
     pub title: &'a str,
     pub author: &'a str,
     pub body: &'a str,
-    pub published: NaiveDate,
     pub rating: i32,
     pub overflow_id: i32,
+    pub published: NaiveDateTime,
 }
 
 
@@ -27,9 +27,10 @@ pub struct Overflow {
     pub title: String,
     pub author: String,
     pub body: String,
-    pub published: NaiveDate,
     pub rating: i32,
     pub overflow_id: i32,
+    pub published: NaiveDateTime,
+    pub deleted: bool,
 }
 
 
@@ -44,7 +45,7 @@ impl<'a> NewOverflow<'a> {
             author,
             body,
             overflow_id,
-            published: chrono::Local::now().naive_local().date(),
+            published: chrono::Local::now().naive_local(),
             rating,
         }
     }

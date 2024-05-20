@@ -6,8 +6,9 @@ diesel::table! {
         title -> Varchar,
         author -> Varchar,
         body -> Text,
-        published -> Date,
         rating -> Int4,
         overflow_id -> Int4,
+        published -> Timestamp,
+        deleted -> Bool,
     }
 }
